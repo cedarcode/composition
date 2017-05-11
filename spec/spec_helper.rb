@@ -11,6 +11,7 @@ case Rails.version
   when '5.0.2'
     require 'support/apps/rails5_0'
 end
+require 'support/model_macros'
 require 'composition'
 
 RSpec.configure do |config|
@@ -23,4 +24,21 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.include Composition::Testing::ModelMacros
+
+  config.before :each do
+    @spawned_models = []
+    @spawned_compositions = []
+  end
+
+  config.after :each do
+    @spawned_models.each do |model|
+      Object.instance_eval { remove_const model } if Object.const_defined?(model)
+    end
+
+    @spawned_compositions.each do |model|
+      Object.instance_eval { remove_const model } if Object.const_defined?(model)
+    end
+  end
 end
