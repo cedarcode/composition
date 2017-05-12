@@ -1,27 +1,27 @@
 describe Composition::Macros::Compose do
 
   describe 'compose getter' do
-    before do
-      create_table(:users) do |t|
-        t.string :credit_card_name
-        t.string :credit_card_brand
-      end
-
-      spawn_model(:User) do
-        compose :credit_card,
-                mapping: {
-                  credit_card_name: :name,
-                  credit_card_brand: :brand
-                }
-      end
-
-      spawn_composition(:CreditCard) do
-        composed_from :user
-      end
-    end
-
     context 'when there is at least 1 value in the composed object' do
       let(:user) { User.new(credit_card_name: 'Jon Snow', credit_card_brand: 'Visa') }
+
+      before do
+        create_table(:users) do |t|
+          t.string :credit_card_name
+          t.string :credit_card_brand
+        end
+
+        spawn_model(:User) do
+          compose :credit_card,
+                  mapping: {
+                    credit_card_name: :name,
+                    credit_card_brand: :brand
+                  }
+        end
+
+        spawn_composition(:CreditCard) do
+          composed_from :user
+        end
+      end
 
       it { expect(user.credit_card).to be_an_instance_of(CreditCard) }
       it { expect(user.credit_card.name).to eq 'Jon Snow' }
@@ -31,7 +31,55 @@ describe Composition::Macros::Compose do
 
     context 'when every attribute is nil' do
       let(:user) { User.new(credit_card_name: nil, credit_card_brand: nil) }
+
+      before do
+        create_table(:users) do |t|
+          t.string :credit_card_name
+          t.string :credit_card_brand
+        end
+
+        spawn_model(:User) do
+          compose :credit_card,
+                  mapping: {
+                    credit_card_name: :name,
+                    credit_card_brand: :brand
+                  }
+        end
+
+        spawn_composition(:CreditCard) do
+          composed_from :user
+        end
+      end
+
       it { expect(user.credit_card).to be_nil }
+    end
+
+    context 'when using class_name' do
+      let(:user) { AdminUser.new(credit_card_name: 'Jon Snow', credit_card_brand: 'Visa') }
+
+      before do
+        create_table(:admin_users) do |t|
+          t.string :credit_card_name
+          t.string :credit_card_brand
+        end
+
+        spawn_model(:AdminUser) do
+          compose :credit_card,
+                  mapping: {
+                    credit_card_name: :name,
+                    credit_card_brand: :brand
+                  }, class_name: 'CCard'
+        end
+
+        spawn_composition(:CCard) do
+          composed_from :user, class_name: 'AdminUser'
+        end
+      end
+
+      it { expect(user.credit_card).to be_an_instance_of(CCard) }
+      it { expect(user.credit_card.name).to eq 'Jon Snow' }
+      it { expect(user.credit_card.brand).to eq 'Visa' }
+      it { expect(user.credit_card.user).to eq user }
     end
   end
 
