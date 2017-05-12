@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = 'Composition for ActiveRecord models'
   s.authors     = ['Marcelo Casiraghi']
   s.email       = 'marcelo@paragon-labs.com'
-  s.homepage    = 'http://rubygems.org/gems/composition'
+  s.homepage    = 'https://github.com/marceloeloelo/composition'
   s.license     = 'MIT'
 
   s.files         = `git ls-files -- lib/*`.split("\n")
