@@ -169,6 +169,22 @@ describe Composition::Macros::Compose do
       it { expect(user.credit_card.brand).to eq 'MasterCard' }
       it { expect(user.credit_card_brand).to eq 'MasterCard' }
     end
+
+    context 'when setting to nil using =' do
+      before { user.credit_card = nil }
+
+      it { expect(user.credit_card).to be_nil }
+      it { expect(user.credit_card_name).to be_nil }
+      it { expect(user.credit_card_brand).to be_nil }
+    end
+
+    context 'when setting to nil using {}' do
+      before { user.update_attributes(credit_card: nil) }
+
+      it { expect(user.credit_card).to be_nil }
+      it { expect(user.credit_card_name).to be_nil }
+      it { expect(user.credit_card_brand).to be_nil }
+    end
   end
 
   describe 'validations' do

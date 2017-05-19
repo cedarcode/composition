@@ -39,10 +39,13 @@ module Composition
       # then we'll set it with the value from the @user de-normalized column. The reason
       # behind this is to imitate how ActiveRecord assign_attributes method works.
       def setter(ar, setter_value)
+        nil_columns(ar) and return if setter_value.nil?
         attributes = setter_value.to_h.with_indifferent_access
+
         mapping.each do |actual_column, composed_alias|
           ar.send("#{actual_column}=", attributes[composed_alias]) if attributes.key?(composed_alias)
         end
+
         setter_value
       end
 
@@ -66,6 +69,10 @@ module Composition
 
       def all_blank?(attributes = {})
         attributes.all? { |_, value| value.blank? }
+      end
+
+      def nil_columns(ar)
+        mapping.each { |actual_column, _| ar.send("#{actual_column}=", nil) }
       end
 
       # TODO: Add descriptive error if find returns nil. "composed_from is missing"
