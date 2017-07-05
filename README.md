@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/marceloeloelo/composition.svg?branch=master)](https://travis-ci.org/marceloeloelo/composition)
 [![Code Climate](https://codeclimate.com/github/marceloeloelo/composition/badges/gpa.svg)](https://codeclimate.com/github/marceloeloelo/composition)
+[![Gem Version](https://badge.fury.io/rb/composition.svg)](https://badge.fury.io/rb/composition)
 
 Alternative composition support for `rails` applications, for when
 ActiveRecord's `composed_of` is not enough. This gem adds some behavior
