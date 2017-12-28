@@ -9,9 +9,12 @@ Gem::Specification.new do |s|
   s.summary     = 'Composition for ActiveRecord models'
   s.description = 'Composition for ActiveRecord models'
   s.authors     = ['Marcelo Casiraghi']
-  s.email       = 'marcelo@paragon-labs.com'
+  s.email       = 'marcelo@cedarcode.com'
   s.homepage    = 'https://github.com/marceloeloelo/composition'
   s.license     = 'MIT'
+  s.metadata    = {
+    'source_code_uri' => 'https://github.com/marceloeloelo/composition'
+  }
 
   s.files         = `git ls-files -- lib/*`.split("\n")
   s.test_files    = `git ls-files -- spec/*`.split("\n")
