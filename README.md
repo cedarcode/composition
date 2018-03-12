@@ -1,7 +1,7 @@
 # Composition
 
-[![Build Status](https://travis-ci.org/marceloeloelo/composition.svg?branch=master)](https://travis-ci.org/marceloeloelo/composition)
-[![Code Climate](https://codeclimate.com/github/marceloeloelo/composition/badges/gpa.svg)](https://codeclimate.com/github/marceloeloelo/composition)
+[![Build Status](https://travis-ci.org/cedarcode/composition.svg?branch=master)](https://travis-ci.org/cedarcode/composition)
+[![Code Climate](https://codeclimate.com/github/cedarcode/composition/badges/gpa.svg)](https://codeclimate.com/github/cedarcode/composition)
 [![Gem Version](https://badge.fury.io/rb/composition.svg)](https://badge.fury.io/rb/composition)
 
 Alternative composition support for `rails` applications, for when
@@ -190,7 +190,7 @@ end
 
 ## Contributing
 
-1. Fork it ( https://github.com/marceloeloelo/composition/ )
+1. Fork it ( https://github.com/cedarcode/composition/ )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
